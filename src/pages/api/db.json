@@ -1,0 +1,280 @@
+{
+  "monsters": [
+    {
+      "image": "/images/icons/acidic-glavenus.jpg",
+      "name": "Acidic Glavenus"
+    },
+    {
+      "image": "/images/icons/alatreon.jpg",
+      "name": "Alatreon"
+    },
+    {
+      "image": "/images/icons/ancient-leshen.jpg",
+      "name": "Ancient Leshen"
+    },
+    {
+      "image": "/images/icons/anjanath.jpg",
+      "name": "Anjanath"
+    },
+    {
+      "image": "/images/icons/azure-rathalos.jpg",
+      "name": "Azure Rathalos"
+    },
+    {
+      "image": "/images/icons/banbaro.jpg",
+      "name": "Banbaro"
+    },
+    {
+      "image": "/images/icons/barioth.jpg",
+      "name": "Barioth"
+    },
+    {
+      "image": "/images/icons/barroth.jpg",
+      "name": "Barroth"
+    },
+    {
+      "image": "/images/icons/bazelgeuse.jpg",
+      "name": "Bazelgeuse"
+    },
+    {
+      "image": "/images/icons/behemoth.jpg",
+      "name": "Behemoth"
+    },
+    {
+      "image": "/images/icons/beotodus.jpg",
+      "name": "Beotodus"
+    },
+    {
+      "image": "/images/icons/black-diablos.jpg",
+      "name": "Black Diablos"
+    },
+    {
+      "image": "/images/icons/blackveil-vaal-hazak.jpg",
+      "name": "Blackveil Vaal Hazak"
+    },
+    {
+      "image": "/images/icons/brachydios.jpg",
+      "name": "Brachydios"
+    },
+    {
+      "image": "/images/icons/brute-tigrex.jpg",
+      "name": "Brute Tigrex"
+    },
+    {
+      "image": "/images/icons/coral-pukei-pukei.jpg",
+      "name": "Coral Pukei-Pukei"
+    },
+    {
+      "image": "/images/icons/deviljho.jpg",
+      "name": "Deviljho"
+    },
+    {
+      "image": "/images/icons/diablos.jpg",
+      "name": "Diablos"
+    },
+    {
+      "image": "/images/icons/dodogama.jpg",
+      "name": "Dodogama"
+    },
+    {
+      "image": "/images/icons/ebony-odogaron.jpg",
+      "name": "Ebony Odogaron"
+    },
+    {
+      "image": "/images/icons/frostfang-barioth.jpg",
+      "name": "Frostfang Barioth"
+    },
+    {
+      "image": "/images/icons/fulgur-anjanath.jpg",
+      "name": "Fulgur Anjanath"
+    },
+    {
+      "image": "/images/icons/furious-rajang.jpg",
+      "name": "Furious Rajang"
+    },
+    {
+      "image": "/images/icons/glavenus.jpg",
+      "name": "Glavenus"
+    },
+    {
+      "image": "/images/icons/gold-rathian.jpg",
+      "name": "Gold Rathian"
+    },
+    {
+      "image": "/images/icons/great-girros.jpg",
+      "name": "Great Girros"
+    },
+    {
+      "image": "/images/icons/great-jagras.jpg",
+      "name": "Great Jagras"
+    },
+    {
+      "image": "/images/icons/jyuratodus.jpg",
+      "name": "Jyuratodus"
+    },
+    {
+      "image": "/images/icons/kirin.jpg",
+      "name": "Kirin"
+    },
+    {
+      "image": "/images/icons/kulu-ya-ku.jpg",
+      "name": "Kulu-Ya-Ku"
+    },
+    {
+      "image": "/images/icons/kulve-taroth.jpg",
+      "name": "Kulve Taroth"
+    },
+    {
+      "image": "/images/icons/kushala-daora.jpg",
+      "name": "Kushala Daora"
+    },
+    {
+      "image": "/images/icons/lavasioth.jpg",
+      "name": "Lavasioth"
+    },
+    {
+      "image": "/images/icons/legiana.jpg",
+      "name": "Legiana"
+    },
+    {
+      "image": "/images/icons/leshen.jpg",
+      "name": "Leshen"
+    },
+    {
+      "image": "/images/icons/lunastra.jpg",
+      "name": "Lunastra"
+    },
+    {
+      "image": "/images/icons/namielle.jpg",
+      "name": "Namielle"
+    },
+    {
+      "image": "/images/icons/nargacuga.jpg",
+      "name": "Nargacuga"
+    },
+    {
+      "image": "/images/icons/nergigante.jpg",
+      "name": "Nergigante"
+    },
+    {
+      "image": "/images/icons/nightshade-paolumu.jpg",
+      "name": "Nightshade Paolumu"
+    },
+    {
+      "image": "/images/icons/odogaron.jpg",
+      "name": "Odogaron"
+    },
+    {
+      "image": "/images/icons/paolumu.jpg",
+      "name": "Paolumu"
+    },
+    {
+      "image": "/images/icons/pink-rathian.jpg",
+      "name": "Pink Rathian"
+    },
+    {
+      "image": "/images/icons/pukei-pukei.jpg",
+      "name": "Pukei-Pukei"
+    },
+    {
+      "image": "/images/icons/radobaan.jpg",
+      "name": "Radobaan"
+    },
+    {
+      "image": "/images/icons/raging-brachydios.jpg",
+      "name": "Raging Brachydios"
+    },
+    {
+      "image": "/images/icons/rajang.jpg",
+      "name": "Rajang"
+    },
+    {
+      "image": "/images/icons/rathalos.jpg",
+      "name": "Rathalos"
+    },
+    {
+      "image": "/images/icons/rathian.jpg",
+      "name": "Rathian"
+    },
+    {
+      "image": "/images/icons/ruiner-nergigante.jpg",
+      "name": "Ruiner Nergigante"
+    },
+    {
+      "image": "/images/icons/safijiiva.jpg",
+      "name": "Safi'jiiva"
+    },
+    {
+      "image": "/images/icons/savage-deviljho.jpg",
+      "name": "Savage Deviljho"
+    },
+    {
+      "image": "/images/icons/scarred-yian-garuga.jpg",
+      "name": "Scarred Yian Garuga"
+    },
+    {
+      "image": "/images/icons/seething-bazelgeuse.jpg",
+      "name": "Seething Bazelgeuse"
+    },
+    {
+      "image": "/images/icons/shara-ishvalda.jpg",
+      "name": "Shara Ishvalda"
+    },
+    {
+      "image": "/images/icons/shrieking-legiana.jpg",
+      "name": "Shrieking Legiana"
+    },
+    {
+      "image": "/images/icons/silver-rathalos.jpg",
+      "name": "Silver Rathalos"
+    },
+    {
+      "image": "/images/icons/stygian-zinogre.jpg",
+      "name": "Stygian Zinogre"
+    },
+    {
+      "image": "/images/icons/teostra.jpg",
+      "name": "Teostra"
+    },
+    {
+      "image": "/images/icons/tigrex.jpg",
+      "name": "Tigrex"
+    },
+    {
+      "image": "/images/icons/tobi-kadachi.jpg",
+      "name": "Tobi-Kadachi"
+    },
+    {
+      "image": "/images/icons/tzitzi-ya-ku.jpg",
+      "name": "Tzitzi-Ya-Ku"
+    },
+    {
+      "image": "/images/icons/uragaan.jpg",
+      "name": "Uragaan"
+    },
+    {
+      "image": "/images/icons/vaal-hazak.jpg",
+      "name": "Vaal Hazak"
+    },
+    {
+      "image": "/images/icons/velkhana.jpg",
+      "name": "Velkhana"
+    },
+    {
+      "image": "/images/icons/viper-tobi-kadachi.jpg",
+      "name": "Viper Tobi-Kadachi"
+    },
+    {
+      "image": "/images/icons/xenojiiva.jpg",
+      "name": "Xeno'jiiva"
+    },
+    {
+      "image": "/images/icons/yian-garuga.jpg",
+      "name": "Yian Garuga"
+    },
+    {
+      "image": "/images/icons/zinogre.jpg",
+      "name": "Zinogre"
+    }
+  ]
+}

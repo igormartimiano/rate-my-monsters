@@ -1,0 +1,24 @@
+:root {
+  font-size: 16px;
+  --color-body-bg: #1f1f1f;
+  --color-body-text: #fff;
+  --color-sidebar-bg: #232323;
+  --color-drop-container-bg: #232323;
+}
+
+body {
+  background-color: var(--color-body-bg);
+  color: var(--color-body-text);
+  font-family: "Arial", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}

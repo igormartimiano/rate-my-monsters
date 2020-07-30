@@ -3,7 +3,13 @@
   --color-body-bg: #1f1f1f;
   --color-body-text: #fff;
   --color-sidebar-bg: #232323;
-  --color-drop-container-bg: #232323;
+  --color-main-container-bg: #232323;
+  --color-loved: #285f52;
+  --color-liked: #0e518e;
+  --color-liked: #0e518e;
+  --color-alright: #b4b66d;
+  --color-annoying: #573264;
+  --color-disgusting: #793030;
 }
 
 body {

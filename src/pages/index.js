@@ -1,13 +1,81 @@
 import React, { useState } from "react";
 import Head from "next/head";
+import DropRow from "../components/DropRow";
+import Sidebar from "../components/Sidebar";
 
 const Home = ({ monsters }) => {
-  const [monsterInfo, setMonsterInfo] = useState({
+  const [monsterInfos, setMonsterInfos] = useState({
     draft: monsters,
-    loved: [],
+    loved: {
+      description: "I absolutely love these 😍",
+      monsters: [],
+    },
+    liked: {
+      description: "Good hunts",
+      monsters: [],
+    },
+    alright: {
+      description: "I don’t mind hunting",
+      monsters: [],
+    },
+    annoying: {
+      description: "Annoying hunts",
+      monsters: [],
+    },
+    disgusting: {
+      description: "Abominations, shouldn’t exist 🤮",
+      monsters: [],
+    },
   });
 
-  console.log(monsterInfo);
+  const onDragStartHandler = ({ target }, status) => {
+    event.dataTransfer.setData(
+      "draggedMonster",
+      JSON.stringify({
+        name: target.title,
+        image: target.src,
+        status: status,
+      })
+    );
+  };
+
+  const onDragOverHandler = (event) => {
+    event.preventDefault();
+  };
+
+  const onDropHandler = ({ event, monsterInfos, areaStatus }) => {
+    event.preventDefault();
+
+    const monster = JSON.parse(event.dataTransfer.getData("draggedMonster"));
+    const filterMonsterByName = (monsters) =>
+      monsters.filter((monsterObj) => {
+        if (monsterObj.name !== monster.name) {
+          return monsterObj;
+        }
+      });
+
+    if (areaStatus === monster.status) {
+      return;
+    }
+
+    const nextState = {
+      ...monsterInfos,
+      [areaStatus]: {
+        ...monsterInfos[areaStatus],
+        monsters: [monster, ...monsterInfos[areaStatus].monsters],
+      },
+      draft: filterMonsterByName(monsterInfos.draft),
+    };
+
+    if (monster.status) {
+      nextState[monster.status] = {
+        ...monsterInfos[monster.status],
+        monsters: filterMonsterByName(monsterInfos[monster.status].monsters),
+      };
+    }
+
+    setMonsterInfos(nextState);
+  };
 
   return (
     <div>
@@ -16,60 +84,35 @@ const Home = ({ monsters }) => {
       </Head>
 
       <div className="page-wrapper">
-        <div className="sidebar">
-          {monsterInfo.draft.map((monster) => (
-            <img
-              key={monster.name}
-              className="monster-icon"
-              src={monster.image}
-              title={monster.name}
-              alt={monster.name}
-              onDragStart={({ target }) => {
-                event.dataTransfer.setData(
-                  "draggedMonster",
-                  JSON.stringify({
-                    name: target.title,
-                    image: target.src,
-                  })
-                );
-              }}
-              draggable
-            />
-          ))}
-        </div>
+        <Sidebar
+          monsters={monsterInfos.draft}
+          onDragStart={onDragStartHandler}
+        />
         <main className="main">
-          <div
-            className="drop-container"
-            onDragOver={(event) => {
-              event.preventDefault();
-            }}
-            onDrop={(event) => {
-              event.preventDefault();
+          <div className="main-container">
+            {Object.keys(monsterInfos).map((monsterInfo) => {
+              if (monsterInfo === "draft") {
+                return;
+              }
 
-              const monster = JSON.parse(
-                event.dataTransfer.getData("draggedMonster")
-              );
-
-              setMonsterInfo({
-                loved: [monster, ...monsterInfo.loved],
-                draft: monsterInfo.draft.filter((monsterObj) => {
-                  if (monsterObj.name !== monster.name) {
-                    return monsterObj;
+              return (
+                <DropRow
+                  key={monsterInfo}
+                  monsters={monsterInfos}
+                  status={monsterInfo}
+                  statusDesc={monsterInfos[monsterInfo].description}
+                  onDragStart={onDragStartHandler}
+                  onDragOver={onDragOverHandler}
+                  onDrop={(event) =>
+                    onDropHandler({
+                      event,
+                      areaStatus: monsterInfo,
+                      monsterInfos,
+                    })
                   }
-                }),
-              });
-            }}
-          >
-            {monsterInfo.loved.length > 0 &&
-              monsterInfo.loved.map((monsterObj, i) => (
-                <img
-                  key={monsterObj.name}
-                  className="monster-icon"
-                  src={monsterObj.image}
-                  title={monsterObj.name}
-                  alt={monsterObj.name}
                 />
-              ))}
+              );
+            })}
           </div>
         </main>
       </div>
@@ -78,19 +121,6 @@ const Home = ({ monsters }) => {
         .page-wrapper {
           display: flex;
           width: 100vw;
-        }
-
-        .sidebar {
-          align-items: center;
-          background-color: var(--color-sidebar-bg);
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
-          grid-gap: 1rem;
-          overflow-y: scroll;
-          justify-content: center;
-          height: 100vh;
-          padding: 1rem;
-          width: 20rem;
         }
 
         .monster-icon {
@@ -109,10 +139,9 @@ const Home = ({ monsters }) => {
           width: calc(100% - 20rem);
         }
 
-        .drop-container {
-          background-color: var(--color-drop-container-bg);
+        .main-container {
+          background-color: var(--color-main-container-bg);
           border-radius: 0.25rem;
-          min-height: 80vh;
           width: 90%;
         }
       `}</style>

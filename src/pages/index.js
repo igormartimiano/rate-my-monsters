@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Head from "next/head";
+import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
+import { saveAs } from "file-saver";
+import qs from "qs";
+
 import DropRow from "../components/DropRow";
 import Sidebar from "../components/Sidebar";
 
 const Home = ({ monsters }) => {
-  const [monsterInfos, setMonsterInfos] = useState({
-    draft: monsters,
+  const router = useRouter();
+  const [draftMonsters, setDraftMonsters] = useState(monsters);
+  const [monstersByStatus, setMonstersByStatus] = useState({
     loved: {
       description: "I absolutely love these 😍",
       monsters: [],
@@ -27,6 +33,7 @@ const Home = ({ monsters }) => {
       monsters: [],
     },
   });
+  const mainContentElem = useRef(null);
 
   const onDragStartHandler = ({ target }, status) => {
     event.dataTransfer.setData(
@@ -34,47 +41,60 @@ const Home = ({ monsters }) => {
       JSON.stringify({
         name: target.title,
         image: target.src,
+        id: target.id,
         status: status,
       })
     );
+  };
+
+  const parseMonsterDataFromDragEvent = () => {
+    let monsterFromDrag = JSON.parse(
+      event.dataTransfer.getData("draggedMonster")
+    );
+    monsterFromDrag.id = Number(monsterFromDrag.id);
+
+    return monsterFromDrag;
   };
 
   const onDragOverHandler = (event) => {
     event.preventDefault();
   };
 
-  const onDropHandler = ({ event, monsterInfos, areaStatus }) => {
+  const onDropHandler = ({ event, monstersByStatus, status }) => {
     event.preventDefault();
 
-    const monster = JSON.parse(event.dataTransfer.getData("draggedMonster"));
-    const filterMonsterByName = (monsters) =>
+    const draggedMonster = parseMonsterDataFromDragEvent(event);
+
+    const filterMonsterById = (monsters) =>
       monsters.filter((monsterObj) => {
-        if (monsterObj.name !== monster.name) {
+        if (Number(monsterObj.id) !== Number(draggedMonster.id)) {
           return monsterObj;
         }
       });
 
-    if (areaStatus === monster.status) {
+    if (status === draggedMonster.status) {
       return;
     }
 
     const nextState = {
-      ...monsterInfos,
-      [areaStatus]: {
-        ...monsterInfos[areaStatus],
-        monsters: [monster, ...monsterInfos[areaStatus].monsters],
+      ...monstersByStatus,
+      [status]: {
+        ...monstersByStatus[status],
+        monsters: [draggedMonster, ...monstersByStatus[status].monsters],
       },
-      draft: filterMonsterByName(monsterInfos.draft),
     };
 
-    if (monster.status) {
-      nextState[monster.status] = {
-        ...monsterInfos[monster.status],
-        monsters: filterMonsterByName(monsterInfos[monster.status].monsters),
+    if (draggedMonster.status) {
+      nextState[draggedMonster.status] = {
+        ...monstersByStatus[draggedMonster.status],
+        monsters: filterMonsterById(
+          monstersByStatus[draggedMonster.status].monsters
+        ),
       };
     }
 
-    setMonsterInfos(nextState);
+    setDraftMonsters(filterMonsterById(draftMonsters));
+    setMonstersByStatus(nextState);
   };
 
   return (
@@ -84,36 +104,66 @@ const Home = ({ monsters }) => {
       </Head>
 
       <div className="page-wrapper">
-        <Sidebar
-          monsters={monsterInfos.draft}
-          onDragStart={onDragStartHandler}
-        />
+        {draftMonsters.length > 0 && (
+          <Sidebar monsters={draftMonsters} onDragStart={onDragStartHandler} />
+        )}
         <main className="main">
-          <div className="main-container">
-            {Object.keys(monsterInfos).map((monsterInfo) => {
-              if (monsterInfo === "draft") {
-                return;
-              }
-
+          <div className="main-container" ref={mainContentElem}>
+            {Object.keys(monstersByStatus).map((status) => {
               return (
                 <DropRow
-                  key={monsterInfo}
-                  monsters={monsterInfos}
-                  status={monsterInfo}
-                  statusDesc={monsterInfos[monsterInfo].description}
+                  key={status}
+                  monsters={monstersByStatus[status].monsters}
+                  status={status}
+                  statusDesc={monstersByStatus[status].description}
                   onDragStart={onDragStartHandler}
                   onDragOver={onDragOverHandler}
                   onDrop={(event) =>
                     onDropHandler({
                       event,
-                      areaStatus: monsterInfo,
-                      monsterInfos,
+                      monstersByStatus,
+                      status: status,
                     })
                   }
                 />
               );
             })}
           </div>
+          <button
+            onClick={async () => {
+              // html2canvas uses window, has to be lazy loaded
+              const html2canvas = await import("html2canvas");
+              const canvas = await html2canvas.default(mainContentElem.current);
+
+              canvas.toBlob((blob) => {
+                saveAs(blob, "my-monsters-rated.png");
+              });
+            }}
+          >
+            Download screenshot
+          </button>
+          <button
+            onClick={() => {
+              const urlParam = Object.keys(monstersByStatus).reduce(
+                (acc, status, i) => {
+                  return {
+                    ...acc,
+                    [status]: monstersByStatus[status].monsters.map(
+                      (monster) => monster.id
+                    ),
+                  };
+                },
+                {}
+              );
+
+              console.log(urlParam);
+              console.log(
+                qs.stringify(urlParam, { encode: false, arrayFormat: "comma" })
+              );
+            }}
+          >
+            Copy shareable link
+          </button>
         </main>
       </div>
 
@@ -135,8 +185,10 @@ const Home = ({ monsters }) => {
           align-items: center;
           display: flex;
           justify-content: center;
-          padding: 2rem;
+          max-height: 100vh;
+          max-width: 100%;
           width: calc(100% - 20rem);
+          padding: 2rem;
         }
 
         .main-container {

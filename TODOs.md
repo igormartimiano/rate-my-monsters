@@ -6,17 +6,19 @@
 
 [x] Move monsters between different statuses
 
-[] Make hated monsters shareable (screenshot or dynamic persistent url)
+[x] Make hated monsters shareable by screenshot
+
+[] Make hated monsters shareable by dynamic persistent url
+
+[] Add share social buttons
 
 [] Update styles to make it more monster hunterish
 
 [] Deploy
 
-## Medium/low priority
+## Medium/low priority ideas
 
 [] Group monsters by type on draft (brute wyverns, elders, etc)
-
-[] change name to rate-my-monsters
 
 [] Add comments to each monster so you can explain why you love/hate it
 
@@ -28,16 +30,24 @@
 
 [] Drag to somewhere to remove monster and move it back to draft
 
+[] Create weapons type ranking
+
+[] Make rate descriptions customizable
+
 [] Add github link
 
 ## Non functional
 
-[] Add ids to monsters
+[x] Change name to rate-my-monsters
 
-[] Refactor states and drag-n-drop handlers
+[x] Add ids to monsters
+
+[x] Refactor states and drag-n-drop handlers (may need to be refactored again)
+
+[x] Create monster icon component
+
+[] Implement a better way to handle state (?)
 
 [] Use another css solution
 
-[] Add a analytics tracker (probably amplitude)
-
-[] Create monster icon component
+[] Add Amplitude to create reports about "Most loved monsters" or "Most hated" etc

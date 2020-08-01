@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import MonsterIcon from "../MonsterIcon";
 
 const DropRow = ({
   monsters,
@@ -20,16 +21,14 @@ const DropRow = ({
           onDragOver={onDragOver}
           onDrop={onDrop}
         >
-          {monsters[status].monsters.length > 0 &&
-            monsters[status].monsters.map((monsterObj, i) => (
-              <img
-                key={monsterObj.name}
-                className="monster-icon"
-                src={monsterObj.image}
-                title={monsterObj.name}
-                alt={monsterObj.name}
+          {monsters.length > 0 &&
+            monsters.map((monsterObj, i) => (
+              <MonsterIcon
+                key={monsterObj.id}
+                name={monsterObj.name}
+                image={monsterObj.image}
+                id={monsterObj.id}
                 onDragStart={(event) => onDragStart(event, status)}
-                draggable
               />
             ))}
         </div>
@@ -92,14 +91,6 @@ const DropRow = ({
           margin-top: 1px;
           min-height: 15vh;
           width: 100%;
-        }
-
-        .monster-icon {
-          cursor: pointer;
-          display: inline-block;
-          height: 5rem;
-          min-width: 5rem;
-          user-select: none;
         }
       `}</style>
     </>

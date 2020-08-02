@@ -281,7 +281,7 @@ const Home = ({ monsters }) => {
 };
 
 export async function getStaticProps() {
-  const res = await fetch("/api/monster");
+  const res = await fetch(`http://${process.env.HOST_NAME}/api/monsters`);
   const {
     default: { monsters },
   } = await res.json();

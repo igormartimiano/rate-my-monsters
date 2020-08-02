@@ -5,9 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "build:vercel": "concurrently \"npm:dev\" \"npm:build\" -s \"first\" -k"
   },
   "dependencies": {
+    "concurrently": "^5.2.0",
     "file-saver": "^2.0.2",
     "html2canvas": "^1.0.0-rc.5",
     "next": "9.5.0",

@@ -280,7 +280,7 @@ const Home = ({ monsters }) => {
   );
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const res = await fetch(`http://${process.env.HOST_NAME}/api/monsters`);
   const {
     default: { monsters },

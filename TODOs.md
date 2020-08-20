@@ -24,7 +24,7 @@
 
 [] Add other monster hunter games (create one hate table for each or one table with all monsters from all games.. or both?)
 
-[] Add status to monsters to the API so monsters to be released aren't shown
+[] Add monsters statuses to the API so monsters to be released aren't shown
 
 [] Add link to wiki for each monster
 

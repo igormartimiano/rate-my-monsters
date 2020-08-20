@@ -289,6 +289,7 @@ export async function getServerSideProps() {
   return {
     props: {
       monsters,
+      t: 1,
     },
   };
 }

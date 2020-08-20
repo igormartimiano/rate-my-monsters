@@ -219,31 +219,37 @@ const Home = ({ monsters }) => {
               );
             })}
           </div>
-          <button
-            onClick={async () => {
-              setProcessingScreenshot(true);
-              // html2canvas uses window, has to be lazy loaded
-              const html2canvas = await import("html2canvas");
-              const canvas = await html2canvas.default(mainContentElem.current);
+          <div className="wrapper-btns">
+            <button
+              className="btn-primary"
+              onClick={async () => {
+                setProcessingScreenshot(true);
+                // html2canvas uses window, has to be lazy loaded
+                const html2canvas = await import("html2canvas");
+                const canvas = await html2canvas.default(
+                  mainContentElem.current
+                );
 
-              canvas.toBlob((blob) => {
-                saveAs(blob, "my-monsters-rated.png");
-              });
+                canvas.toBlob((blob) => {
+                  saveAs(blob, "my-monsters-rated.png");
+                });
 
-              setProcessingScreenshot(false);
-            }}
-          >
-            {isProcessingScreenshot ? "Processing..." : "Download screenshot"}
-          </button>
-          <button
-            onClick={() => {
-              navigator.clipboard.writeText(
-                `${window.location.origin}${window.location.pathname}?${monstersByStatusQs}`
-              );
-            }}
-          >
-            Copy shareable link
-          </button>
+                setProcessingScreenshot(false);
+              }}
+            >
+              {isProcessingScreenshot ? "Processing..." : "Download screenshot"}
+            </button>
+            <button
+              className="btn-primary"
+              onClick={() => {
+                navigator.clipboard.writeText(
+                  `${window.location.origin}${window.location.pathname}?${monstersByStatusQs}`
+                );
+              }}
+            >
+              Copy shareable link
+            </button>
+          </div>
         </main>
       </div>
       <style jsx>{`
@@ -263,6 +269,7 @@ const Home = ({ monsters }) => {
         .main {
           align-items: center;
           display: flex;
+          flex-direction: column;
           justify-content: center;
           max-height: 100vh;
           max-width: 100%;
@@ -274,6 +281,26 @@ const Home = ({ monsters }) => {
           background-color: var(--color-main-container-bg);
           border-radius: 0.25rem;
           width: 90%;
+        }
+
+        .wrapper-btns {
+          margin-top: 2rem;
+          width: 90%;
+          display: flex;
+          justify-content: flex-end;
+        }
+
+        .btn-primary {
+          padding: 1rem;
+          background-color: var(--color-loved);
+          color: white;
+          border: 0;
+          border-radius: 0.25rem;
+          cursor: pointer;
+        }
+
+        .btn-primary:first-of-type {
+          margin-right: 0.5rem;
         }
       `}</style>
     </>
@@ -289,7 +316,6 @@ export async function getServerSideProps() {
   return {
     props: {
       monsters,
-      t: 1,
     },
   };
 }

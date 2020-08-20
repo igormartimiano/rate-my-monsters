@@ -8,13 +8,13 @@
 
 [x] Make hated monsters shareable by screenshot
 
-[] Make hated monsters shareable by dynamic persistent url
+[x] Make hated monsters shareable by dynamic persistent url
 
 [] Add share social buttons
 
 [] Update styles to make it more monster hunterish
 
-[] Deploy
+[x] Deploy
 
 ## Medium/low priority ideas
 
@@ -24,7 +24,7 @@
 
 [] Add other monster hunter games (create one hate table for each or one table with all monsters from all games.. or both?)
 
-[] Add status to monsters on API so monsters to be release aren't shown
+[] Add status to monsters to the API so monsters to be released aren't shown
 
 [] Add link to wiki for each monster
 
